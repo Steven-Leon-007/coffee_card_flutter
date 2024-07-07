@@ -4,32 +4,30 @@ import 'package:flutter/material.dart';
 
 class CoffeeTypeDisplay extends StatefulWidget {
   final CoffeeModel coffeeType;
-  const CoffeeTypeDisplay({super.key, required this.coffeeType});
+  final bool isSelected;
+  final VoidCallback onSelect;
+
+  const CoffeeTypeDisplay(
+      {super.key,
+      required this.coffeeType,
+      required Function() this.onSelect,
+      required this.isSelected});
 
   @override
   State<CoffeeTypeDisplay> createState() => _CoffeeTypeDisplayState();
 }
 
 class _CoffeeTypeDisplayState extends State<CoffeeTypeDisplay> {
-  Color? _bgPicked = Colors.brown[300];
-  bool _isSelected = false;
-
-  void selectCoffeeType() {
-    setState(() {
-      _isSelected = !_isSelected;
-      _bgPicked = _isSelected ? Colors.brown[400] : Colors.brown[300];
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final coffeeType = widget.coffeeType;
+    final Color? bgPicked = widget.isSelected ? Colors.brown[400] : Colors.brown[300];
 
     return GestureDetector(
-      onTap: selectCoffeeType,
+      onTap: widget.onSelect,
       child: Container(
         padding: const EdgeInsets.all(10),
-        color: _bgPicked,
+        color: bgPicked,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

@@ -11,12 +11,20 @@ class CoffeeTypes extends StatefulWidget {
 
 class _CoffeeTypesState extends State<CoffeeTypes> {
   Color? bgPicked = Colors.brown[300];
+  CoffeeModel? _selectedCoffeeType;
 
   List<CoffeeModel> coffeeTypes = [
-    CoffeeModel("Macchiato", "assets/img/YEPge.png", 2.50),
-    CoffeeModel("Cappuccino", "assets/img/YEPge.png", 3.50),
-    CoffeeModel("Americano", "assets/img/YEPge.png", 2.00),
+    CoffeeModel("Macchiato", "assets/img/macchiato.png", 2.50),
+    CoffeeModel("Cappuccino", "assets/img/cappuccino.png", 3.50),
+    CoffeeModel("Americano", "assets/img/americano.png", 2.00),
   ];
+
+  void _selectCoffeeType(CoffeeModel coffeeType) {
+    setState(() {
+      _selectedCoffeeType = coffeeType;
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +34,11 @@ class _CoffeeTypesState extends State<CoffeeTypes> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: coffeeTypes.map((coffeeType) {
-          return CoffeeTypeDisplay(coffeeType: coffeeType);
+          return CoffeeTypeDisplay(
+            coffeeType: coffeeType,
+            isSelected: coffeeType == _selectedCoffeeType,
+            onSelect: () => _selectCoffeeType(coffeeType),
+          );
         }).toList(),
       ),
     );

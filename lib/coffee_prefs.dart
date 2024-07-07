@@ -49,7 +49,7 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
             for (int i = 0; i < strength; i++)
               // The comma at the end of the element marks the end of the loop
               Image.asset(
-                "assets/img/YEPge.png",
+                "assets/img/coffee_beans.png",
                 width: 25,
               ),
             const Expanded(
@@ -76,7 +76,7 @@ class _CoffeePrefsState extends State<CoffeePrefs> {
             else
               for (int i = 0; i < sugars; i++)
                 Image.asset(
-                  "assets/img/YEPge.png",
+                  "assets/img/sugar_cubes.png",
                   width: 25,
                 ),
             const Expanded(
